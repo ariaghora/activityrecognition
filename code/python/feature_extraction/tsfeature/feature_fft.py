@@ -20,7 +20,7 @@ class Feature_fft(object):
         self._freq_sum_ = np.sum(self.freq_spectrum)
 
     def fft_dc(self):
-        return self.dc
+        return self.dc[0]
 
     def fft_mean(self):
         return np.mean(self.freq_spectrum)
@@ -95,7 +95,7 @@ class Feature_fft(object):
 
     def fft_shape_kurt(self):
         shape_mean = self.fft_shape_mean()
-        np.sum([np.power((x - shape_mean), 4) * self.freq_spectrum[x] - 3
+        return np.sum([np.power((x - shape_mean), 4) * self.freq_spectrum[x] - 3
                 for x in range(len(self.freq_spectrum))]) / self._freq_sum_
 
     def fft_all(self):
